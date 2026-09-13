@@ -1,0 +1,287 @@
+<meta charset="UTF-8">
+<title>How We Read the Market | Merit Digital Advisory</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root{
+    --bg:#06080b;
+    --bg-2:#0a1f19;
+    --bg-soft:rgba(255,255,255,.04);
+    --card:rgba(255,255,255,.045);
+    --text:#f3f6f5;
+    --text-dim:#9fb0ac;
+    --accent:#00ffa7;
+    --accent-dark:#00cc86;
+    --accent-text:#04140d;
+    --line:rgba(255,255,255,.1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  h1,h2,h3{font-weight:600;letter-spacing:-.01em;}
+  a{color:inherit;}
+
+  /* ===== NAV ===== */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 48px;
+    background:rgba(6,8,11,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .brand{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+  .nav .brand img{height:48px;width:auto;display:block;}
+  .mega-menu-topbar .brand img{height:48px;width:auto;display:block;}
+  .nav .links{display:flex;gap:32px;font-size:.85rem;color:var(--text-dim);}
+  .nav .links a{text-decoration:none;}
+  .nav .links a:hover{color:var(--text);}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .btn-ghost-nav{
+    font-size:.82rem;padding:9px 18px;border:1px solid var(--line);border-radius:8px;
+    background:transparent;color:var(--text);cursor:pointer;
+  }
+  .btn-ghost-nav:hover{border-color:var(--accent);}
+  .btn-solid-nav{
+    font-size:.82rem;padding:9px 18px;border:none;border-radius:8px;
+    background:var(--accent);color:var(--accent-text);font-weight:600;cursor:pointer;
+  }
+  .btn-solid-nav:hover{background:var(--accent-dark);}
+  .menu-toggle{
+    width:28px;height:18px;display:flex;flex-direction:column;justify-content:space-between;
+    background:none;border:none;cursor:pointer;padding:0;
+  }
+  .menu-toggle span{display:block;height:2px;background:var(--text);border-radius:2px;transition:.25s;}
+  .menu-toggle span:nth-child(1){width:100%;}
+  .menu-toggle span:nth-child(2){width:65%;margin-left:auto;}
+  .menu-toggle span:nth-child(3){width:40%;}
+  .menu-toggle.open span{width:100%;margin-left:0;}
+  .menu-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+
+  .mega-menu{
+    position:fixed;inset:0;
+    background:rgba(6,8,11,.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    z-index:300;
+    opacity:0;visibility:hidden;
+    transition:opacity .3s, visibility .3s;
+    overflow-y:auto;
+  }
+  .mega-menu.open{opacity:1;visibility:visible;}
+  .mega-menu-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;
+  }
+  .mega-menu-inner{
+    max-width:900px;margin:0 auto;padding:40px 24px 100px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:60px;
+  }
+  .mega-col-title{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:700;}
+  .mega-col a{display:block;color:var(--text-dim);text-decoration:none;font-size:1.35rem;font-weight:600;padding:10px 0;transition:color .15s;}
+  .mega-col a:hover{color:var(--accent);}
+
+
+
+  /* ===== PAGE HEADER ===== */
+  .method-header{
+    position:relative;
+    padding:80px 24px 50px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 30% 15%, rgba(0,255,167,.12), transparent 50%),
+      radial-gradient(circle at 75% 55%, rgba(0,120,90,.25), transparent 55%),
+      linear-gradient(180deg, #061713 0%, #06090c 60%, #06080b 100%);
+    overflow:hidden;
+  }
+  .method-header .label{
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:14px;position:relative;z-index:2;
+  }
+  .method-header h1{font-size:2.2rem;margin:0 0 16px;position:relative;z-index:2;}
+  .method-header p{
+    color:var(--text-dim);font-size:1.05rem;max-width:680px;margin:0 auto;
+    line-height:1.7;position:relative;z-index:2;
+  }
+
+  /* ===== METHODOLOGY LIST ===== */
+  .method-section{max-width:900px;margin:0 auto;padding:70px 24px 100px;}
+  .method-item{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:24px;
+    padding:32px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .method-item:first-child{padding-top:0;}
+  .method-item:last-child{border-bottom:none;}
+  .method-icon{
+    width:56px;height:56px;border-radius:12px;
+    background:rgba(0,255,167,.12);
+    border:1px solid rgba(0,255,167,.3);
+    color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .method-icon svg{width:26px;height:26px;}
+  .method-item h3{font-size:1.15rem;margin:0 0 10px;}
+  .method-item p{color:var(--text-dim);font-size:.95rem;line-height:1.75;margin:0;}
+
+  .method-cta{
+    text-align:center;
+    padding:0 24px 100px;
+  }
+  .method-cta p{color:var(--text-dim);font-size:1rem;margin:0 0 22px;}
+  .btn-primary{
+    display:inline-block;background:var(--accent);color:var(--accent-text);
+    font-weight:700;padding:16px 32px;border-radius:8px;text-decoration:none;font-size:.92rem;
+  }
+  .btn-primary:hover{background:var(--accent-dark);}
+
+  footer{border-top:1px solid var(--line);padding:50px 24px 30px;}
+  .footer-inner{
+    max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:24px;padding-bottom:30px;border-bottom:1px solid var(--line);
+  }
+  .footer-links{display:flex;gap:26px;font-size:.85rem;color:var(--text-dim);flex-wrap:wrap;}
+  .footer-links a{text-decoration:none;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-linkedin{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:8px;border:1px solid var(--line);color:var(--text-dim);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .15s,border-color .15s;}
+  .footer-linkedin:hover{color:var(--accent);border-color:var(--accent);}
+  .footer-bottom{
+    max-width:1200px;margin:0 auto;padding-top:22px;font-size:.78rem;
+    color:var(--text-dim);text-align:center;
+  }
+
+  @media (max-width:900px){
+    .nav .links{display:none;}
+    .method-header h1{font-size:1.6rem;}
+    .method-item{grid-template-columns:48px 1fr;gap:18px;}
+  }
+</style>
+
+<div class="nav">
+  <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+  <div class="nav-right">
+    <a href="login.html" class="btn-ghost-nav" style="text-decoration:none;display:inline-block;">Log In</a>
+    <a href="contact.html" class="btn-solid-nav" style="text-decoration:none;display:inline-block;">Talk to Sales</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<div class="mega-menu" id="megaMenu">
+  <div class="mega-menu-topbar">
+    <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+    <button class="menu-toggle open" id="menuToggleInside" aria-label="Close menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mega-menu-inner">
+    <div class="mega-col">
+      <div class="mega-col-title">Explore</div>
+      <a href="index.html#research">Research</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="mega-col">
+      <div class="mega-col-title">Company</div>
+      <a href="about.html#about-us">About Us</a>
+      <a href="about.html#why-choose">Why Choose Merit Digital Advisory</a>
+      <a href="story.html">The Merit Digital Story</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+      <a href="legal.html">Legal</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const t1 = document.getElementById('menuToggle');
+    const t2 = document.getElementById('menuToggleInside');
+    const menu = document.getElementById('megaMenu');
+    function toggleMenu(){
+      t1.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    t1.addEventListener('click', toggleMenu);
+    t2.addEventListener('click', toggleMenu);
+  })();
+</script>
+
+<section class="method-header">
+  <div class="label">Our Methodology</div>
+  <h1>How We Read the Market</h1>
+  <p>Merit Market Pulse isn't a guess. It's built on a consistent process. Here's what shapes how we read conditions across every market we cover.</p>
+</section>
+
+<section class="method-section">
+  <div class="method-item">
+    <div class="method-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18" stroke="currentColor" stroke-width="2"/><path d="M3 12h18" stroke="currentColor" stroke-width="2"/></svg>
+    </div>
+    <div>
+      <h3>Cross-Asset Lens</h3>
+      <p>We read crypto, forex, equities, and commodities together, because capital moves across markets, not inside silos. A shift in one asset class rarely happens in isolation.</p>
+    </div>
+  </div>
+  <div class="method-item">
+    <div class="method-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+    </div>
+    <div>
+      <h3>Real Market Experience</h3>
+      <p>Every read is grounded in 7+ years of hands-on market experience, not just a backtested model reacting to historical patterns.</p>
+    </div>
+  </div>
+  <div class="method-item">
+    <div class="method-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
+    </div>
+    <div>
+      <h3>Multi-Source Data</h3>
+      <p>We aggregate live data from six leading providers (TradingView, CoinGecko, Investing.com, MetaTrader, Alpha Vantage, and Yahoo Finance) instead of relying on a single feed.</p>
+    </div>
+  </div>
+  <div class="method-item">
+    <div class="method-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="12" r="3" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2"/><path d="M9 7l6 3M9 17l6-3" stroke="currentColor" stroke-width="2"/></svg>
+    </div>
+    <div>
+      <h3>A Consistent Framework</h3>
+      <p>Every read follows the same Discovery &rarr; Diligence &rarr; Advisory process, so conclusions are structured and repeatable, not ad hoc calls made in the moment.</p>
+    </div>
+  </div>
+  <div class="method-item">
+    <div class="method-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12c0 4.4-4 8-9 8-1.4 0-2.7-.3-3.9-.8L3 20l1.1-4C3.4 14.8 3 13.4 3 12c0-4.4 4-8 9-8s9 3.6 9 8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div>
+      <h3>Direct Access to Our Team</h3>
+      <p>You get a real person to talk through what we're seeing and why, not just an automated report landing in your inbox.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="brand">Merit Digital Advisory</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/company/veloria-mason/" target="_blank" rel="noopener" aria-label="Merit Digital Advisory on LinkedIn" class="footer-linkedin">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg><span>Follow us on LinkedIn</span></a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Merit Digital Advisory. All rights reserved.</div>
+</footer>
+
+<script src="cookie-consent.js"></script>

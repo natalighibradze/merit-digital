@@ -1,0 +1,248 @@
+<meta charset="UTF-8">
+<title>The Merit Digital Story</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root{
+    --bg:#06080b;
+    --bg-2:#0a1f19;
+    --bg-soft:rgba(255,255,255,.04);
+    --card:rgba(255,255,255,.045);
+    --text:#f3f6f5;
+    --text-dim:#9fb0ac;
+    --accent:#00ffa7;
+    --accent-dark:#00cc86;
+    --accent-text:#04140d;
+    --line:rgba(255,255,255,.1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  h1,h2,h3{font-weight:600;letter-spacing:-.01em;}
+  a{color:inherit;}
+
+  /* ===== NAV ===== */
+  .nav{
+    position:sticky;top:0;z-index:200;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;
+    background:rgba(6,8,11,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .brand{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+  .nav .brand img{height:48px;width:auto;display:block;}
+  .mega-menu-topbar .brand img{height:48px;width:auto;display:block;}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .btn-ghost-nav{font-size:.82rem;padding:9px 18px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text);cursor:pointer;}
+  .btn-ghost-nav:hover{border-color:var(--accent);}
+  .btn-solid-nav{font-size:.82rem;padding:9px 18px;border:none;border-radius:8px;background:var(--accent);color:var(--accent-text);font-weight:600;cursor:pointer;}
+  .btn-solid-nav:hover{background:var(--accent-dark);}
+  .menu-toggle{
+    width:28px;height:18px;display:flex;flex-direction:column;justify-content:space-between;
+    background:none;border:none;cursor:pointer;padding:0;
+  }
+  .menu-toggle span{display:block;height:2px;background:var(--text);border-radius:2px;transition:.25s;}
+  .menu-toggle span:nth-child(1){width:100%;}
+  .menu-toggle span:nth-child(2){width:65%;margin-left:auto;}
+  .menu-toggle span:nth-child(3){width:40%;}
+  .menu-toggle.open span{width:100%;margin-left:0;}
+  .menu-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+
+  .mega-menu{
+    position:fixed;inset:0;
+    background:rgba(6,8,11,.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    z-index:300;
+    opacity:0;visibility:hidden;
+    transition:opacity .3s, visibility .3s;
+    overflow-y:auto;
+  }
+  .mega-menu.open{opacity:1;visibility:visible;}
+  .mega-menu-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;
+  }
+  .mega-menu-inner{
+    max-width:900px;margin:0 auto;padding:40px 24px 100px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:60px;
+  }
+  .mega-col-title{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:700;}
+  .mega-col a{display:block;color:var(--text-dim);text-decoration:none;font-size:1.35rem;font-weight:600;padding:10px 0;transition:color .15s;}
+  .mega-col a:hover{color:var(--accent);}
+
+  /* ===== HEADER ===== */
+  .story-header{
+    position:relative;padding:80px 24px 40px;text-align:center;
+    background:
+      radial-gradient(circle at 30% 15%, rgba(0,255,167,.12), transparent 50%),
+      radial-gradient(circle at 75% 55%, rgba(0,120,90,.25), transparent 55%),
+      linear-gradient(180deg, #061713 0%, #06090c 60%, #06080b 100%);
+    overflow:hidden;
+  }
+  .story-header .label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .story-header h1{font-size:2.2rem;margin:0 auto;max-width:700px;}
+
+  /* ===== VERTICAL-LINE SPLIT ===== */
+  .vsplit-section{
+    max-width:1100px;margin:0 auto;padding:90px 24px;
+    display:grid;grid-template-columns:200px 1fr;gap:50px;
+  }
+  .vsplit-label{display:flex;align-items:flex-start;gap:12px;}
+  .vsplit-label .bar{width:2px;background:var(--accent);flex-shrink:0;height:1.1em;margin-top:.2em;}
+  .vsplit-label span{font-size:.95rem;color:var(--text-dim);}
+  .vsplit-content h2{font-size:1.8rem;margin:0 0 18px;max-width:600px;}
+  .vsplit-content p{color:var(--text-dim);font-size:1rem;line-height:1.8;max-width:600px;margin:0 0 16px;}
+
+  .story-photo{
+    grid-column:2;
+    aspect-ratio:16/7;
+    background:var(--bg-soft);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px dashed var(--line);
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);
+    margin-top:32px;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline-section{border-top:1px solid var(--line);}
+  .timeline-track{position:relative;padding-left:32px;border-left:2px solid var(--line);}
+  .timeline-entry{position:relative;padding-bottom:56px;}
+  .timeline-entry:last-child{padding-bottom:0;}
+  .timeline-entry::before{
+    content:"";position:absolute;left:-39px;top:4px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 4px rgba(0,255,167,.15);
+  }
+  .timeline-year{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--accent);margin-bottom:8px;text-transform:uppercase;}
+  .timeline-entry h3{font-size:1.15rem;margin:0 0 10px;}
+  .timeline-entry p{color:var(--text-dim);font-size:.92rem;line-height:1.75;margin:0;max-width:560px;}
+
+  footer{border-top:1px solid var(--line);padding:50px 24px 30px;}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:30px;border-bottom:1px solid var(--line);}
+  .footer-links{display:flex;gap:26px;font-size:.85rem;color:var(--text-dim);flex-wrap:wrap;}
+  .footer-links a{text-decoration:none;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-linkedin{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:8px;border:1px solid var(--line);color:var(--text-dim);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .15s,border-color .15s;}
+  .footer-linkedin:hover{color:var(--accent);border-color:var(--accent);}
+  .footer-bottom{max-width:1200px;margin:0 auto;padding-top:22px;font-size:.78rem;color:var(--text-dim);text-align:center;}
+
+  @media (max-width:900px){
+    .story-header h1{font-size:1.6rem;}
+    .vsplit-section{grid-template-columns:1fr;gap:16px;}
+    .story-photo{grid-column:1;}
+  }
+</style>
+
+<div class="nav">
+  <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+  <div class="nav-right">
+    <a href="login.html" class="btn-ghost-nav" style="text-decoration:none;display:inline-block;">Log In</a>
+    <a href="contact.html" class="btn-solid-nav" style="text-decoration:none;display:inline-block;">Talk to Sales</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<div class="mega-menu" id="megaMenu">
+  <div class="mega-menu-topbar">
+    <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+    <button class="menu-toggle open" id="menuToggleInside" aria-label="Close menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mega-menu-inner">
+    <div class="mega-col">
+      <div class="mega-col-title">Explore</div>
+      <a href="index.html#research">Research</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="mega-col">
+      <div class="mega-col-title">Company</div>
+      <a href="about.html#about-us">About Us</a>
+      <a href="about.html#why-choose">Why Choose Merit Digital Advisory</a>
+      <a href="story.html">The Merit Digital Story</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+      <a href="legal.html">Legal</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const t1 = document.getElementById('menuToggle');
+    const t2 = document.getElementById('menuToggleInside');
+    const menu = document.getElementById('megaMenu');
+    function toggleMenu(){
+      t1.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    t1.addEventListener('click', toggleMenu);
+    t2.addEventListener('click', toggleMenu);
+  })();
+</script>
+
+<section class="story-header">
+  <div class="label">The Merit Digital Story</div>
+  <h1>How Merit Digital Advisory Is Becoming a Trusted Name in Independent Market Research</h1>
+</section>
+
+<section class="vsplit-section">
+  <div class="vsplit-label"><div class="bar"></div><span>The Merit Digital Story</span></div>
+  <div class="vsplit-content">
+    <h2>Becoming a Trusted Name in Independent Market Research</h2>
+    <p>Merit Digital Advisory was founded to bring real, hands-on market experience to businesses that don't have an in-house research team.</p>
+    <p>What started as one person's deep experience across crypto, forex, equities, and commodities is growing into a firm built on the same principle: clear, independent analysis you can actually act on.</p>
+  </div>
+  <div class="story-photo">Team Photo Placeholder</div>
+</section>
+
+<section class="vsplit-section timeline-section">
+  <div class="vsplit-label"><div class="bar"></div><span>The Merit Digital Timeline</span></div>
+  <div class="vsplit-content">
+    <h2>From Hands-On Market Experience to an Independent Research Firm</h2>
+    <div class="timeline-track">
+      <div class="timeline-entry">
+        <div class="timeline-year">2019</div>
+        <h3>Foundational Market Experience</h3>
+        <p>Our founder begins hands-on work across crypto, forex, equities, and commodities: the real market experience that Merit Digital Advisory's research is still built on today.</p>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-year">2025</div>
+        <h3>Merit Digital Advisory Is Founded</h3>
+        <p>The idea becomes a company, built to bring independent, institutional-style research directly to businesses, instead of keeping it in-house at trading desks and funds.</p>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-year">2026</div>
+        <h3>Research &amp; Coverage Go Live</h3>
+        <p>Live market dashboards, weekly Merit Market Pulse updates, and research spanning 25K+ instruments across four asset classes launch to clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="brand">Merit Digital Advisory</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/company/veloria-mason/" target="_blank" rel="noopener" aria-label="Merit Digital Advisory on LinkedIn" class="footer-linkedin">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg><span>Follow us on LinkedIn</span></a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Merit Digital Advisory. All rights reserved.</div>
+</footer>
+
+<script src="cookie-consent.js"></script>

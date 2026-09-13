@@ -1,0 +1,156 @@
+<meta charset="UTF-8">
+<title>Log In | Merit Digital Advisory</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root{
+    --bg:#06080b;
+    --bg-2:#0a1f19;
+    --bg-soft:rgba(255,255,255,.04);
+    --card:rgba(255,255,255,.045);
+    --text:#f3f6f5;
+    --text-dim:#9fb0ac;
+    --accent:#00ffa7;
+    --accent-dark:#00cc86;
+    --accent-text:#04140d;
+    --line:rgba(255,255,255,.1);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  h1{font-weight:600;letter-spacing:-.01em;}
+  a{color:inherit;}
+
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 48px;
+    background:rgba(6,8,11,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .brand{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+  .nav .brand img{height:48px;width:auto;display:block;}
+
+  .login-wrap{
+    min-height:calc(100vh - 90px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:60px 24px;
+    background:
+      radial-gradient(circle at 30% 15%, rgba(0,255,167,.12), transparent 50%),
+      radial-gradient(circle at 75% 55%, rgba(0,120,90,.2), transparent 55%),
+      linear-gradient(180deg, #061713 0%, #06090c 60%, #06080b 100%);
+  }
+  .login-card{
+    width:100%;
+    max-width:400px;
+    background:var(--card);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:40px 34px;
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+  }
+  .login-card h1{font-size:1.5rem;margin:0 0 8px;text-align:center;}
+  .login-card .sub{color:var(--text-dim);font-size:.88rem;text-align:center;margin:0 0 28px;}
+  .login-card label{
+    display:block;
+    font-size:.72rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin-bottom:8px;
+  }
+  .login-card input{
+    width:100%;
+    padding:13px 14px;
+    margin-bottom:18px;
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--line);
+    border-radius:8px;
+    color:var(--text);
+    font-family:inherit;
+    font-size:.92rem;
+  }
+  .login-card button{
+    width:100%;
+    background:var(--accent);
+    color:var(--accent-text);
+    font-weight:700;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    font-size:.92rem;
+    cursor:pointer;
+    margin-top:6px;
+  }
+  .login-card button:hover{background:var(--accent-dark);}
+
+  .login-error{
+    display:none;
+    background:rgba(239,68,68,.12);
+    border:1px solid rgba(239,68,68,.4);
+    color:#fca5a5;
+    border-radius:8px;
+    padding:13px 14px;
+    font-size:.85rem;
+    line-height:1.6;
+    margin-bottom:20px;
+  }
+  .login-error a{color:#fca5a5;text-decoration:underline;font-weight:600;}
+  .login-error.show{display:block;}
+
+  .back-link{
+    display:block;
+    text-align:center;
+    margin-top:22px;
+    font-size:.82rem;
+    color:var(--text-dim);
+    text-decoration:none;
+  }
+  .back-link:hover{color:var(--text);}
+</style>
+
+<div class="nav">
+  <a href="index.html" class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</a>
+</div>
+
+<div class="login-wrap">
+  <div class="login-card">
+    <h1>Log In</h1>
+    <p class="sub">Access your Merit Digital Advisory client dashboard.</p>
+
+    <div class="login-error" id="loginError">
+      Incorrect email or password, or this account isn't registered yet. If you're a client and need access, please <a href="contact.html">contact us</a>.
+    </div>
+
+    <form id="loginForm">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" required>
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" required>
+      <button type="submit">Log In</button>
+    </form>
+    <a href="contact.html" class="back-link">Don't have an account? Talk to Sales &rarr;</a>
+  </div>
+</div>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('loginError').classList.add('show');
+  });
+</script>
+
+<script src="cookie-consent.js"></script>

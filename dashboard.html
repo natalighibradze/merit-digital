@@ -1,0 +1,337 @@
+<title>Dashboard | Merit Digital Advisory</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root{
+    --bg:#06080b;
+    --bg-2:#0a1f19;
+    --bg-soft:rgba(255,255,255,.04);
+    --card:rgba(255,255,255,.045);
+    --text:#f3f6f5;
+    --text-dim:#9fb0ac;
+    --accent:#00ffa7;
+    --accent-dark:#00cc86;
+    --accent-text:#04140d;
+    --line:rgba(255,255,255,.1);
+    --green-glow:#00ffa7;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  h1,h2,h3{font-weight:600;letter-spacing:-.01em;}
+  a{color:inherit;}
+
+  /* ===== NAV ===== */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 48px;
+    background:rgba(6,8,11,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .brand{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+  .nav .brand img{height:48px;width:auto;display:block;}
+  .mega-menu-topbar .brand img{height:48px;width:auto;display:block;}
+  .nav .links{
+    display:flex;
+    gap:32px;
+    font-size:.85rem;
+    color:var(--text-dim);
+  }
+  .nav .links a{text-decoration:none;}
+  .nav .links a:hover{color:var(--text);}
+  .nav .links a.active{color:var(--accent);}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .btn-ghost-nav{
+    font-size:.82rem;
+    padding:9px 18px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+    cursor:pointer;
+  }
+  .btn-ghost-nav:hover{border-color:var(--accent);}
+  .btn-solid-nav{
+    font-size:.82rem;
+    padding:9px 18px;
+    border:none;
+    background:var(--accent);
+    color:var(--accent-text);
+    font-weight:600;
+    cursor:pointer;
+  }
+  .btn-solid-nav:hover{background:var(--accent-dark);}
+  .menu-toggle{
+    width:28px;height:18px;display:flex;flex-direction:column;justify-content:space-between;
+    background:none;border:none;cursor:pointer;padding:0;
+  }
+  .menu-toggle span{display:block;height:2px;background:var(--text);border-radius:2px;transition:.25s;}
+  .menu-toggle span:nth-child(1){width:100%;}
+  .menu-toggle span:nth-child(2){width:65%;margin-left:auto;}
+  .menu-toggle span:nth-child(3){width:40%;}
+  .menu-toggle.open span{width:100%;margin-left:0;}
+  .menu-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+
+  .mega-menu{
+    position:fixed;inset:0;
+    background:rgba(6,8,11,.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    z-index:300;
+    opacity:0;visibility:hidden;
+    transition:opacity .3s, visibility .3s;
+    overflow-y:auto;
+  }
+  .mega-menu.open{opacity:1;visibility:visible;}
+  .mega-menu-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;
+  }
+  .mega-menu-inner{
+    max-width:900px;margin:0 auto;padding:40px 24px 100px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:60px;
+  }
+  .mega-col-title{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:700;}
+  .mega-col a{display:block;color:var(--text-dim);text-decoration:none;font-size:1.35rem;font-weight:600;padding:10px 0;transition:color .15s;}
+  .mega-col a:hover{color:var(--accent);}
+
+
+
+  /* ===== DASHBOARD PAGE ===== */
+  .dashboard-page-header{
+    position:relative;
+    padding:64px 24px 40px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 30% 15%, rgba(0,255,167,.12), transparent 50%),
+      radial-gradient(circle at 75% 55%, rgba(0,120,90,.25), transparent 55%),
+      linear-gradient(180deg, #061713 0%, #06090c 60%, #06080b 100%);
+    overflow:hidden;
+  }
+  .dashboard-page-header .label{
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  .dashboard-page-header h1{font-size:2.1rem;margin:0 0 14px;position:relative;z-index:2;}
+  .dashboard-page-header p{
+    color:var(--text-dim);
+    font-size:1rem;
+    max-width:600px;
+    margin:0 auto;
+    line-height:1.7;
+    position:relative;
+    z-index:2;
+  }
+
+  .dashboard-full{
+    max-width:1400px;
+    margin:0 auto;
+    padding:48px 24px 100px;
+  }
+  .dashboard-full-frame{
+    background:var(--bg-soft);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--line);
+    border-radius:10px;
+    height:78vh;
+    min-height:560px;
+    overflow:hidden;
+    padding:10px;
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:50px 24px 30px;
+  }
+  .footer-inner{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+    padding-bottom:30px;
+    border-bottom:1px solid var(--line);
+  }
+  .footer-links{display:flex;gap:26px;font-size:.85rem;color:var(--text-dim);flex-wrap:wrap;}
+  .footer-links a{text-decoration:none;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-linkedin{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:8px;border:1px solid var(--line);color:var(--text-dim);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .15s,border-color .15s;}
+  .footer-linkedin:hover{color:var(--accent);border-color:var(--accent);}
+  .footer-bottom{
+    max-width:1200px;
+    margin:0 auto;
+    padding-top:22px;
+    font-size:.78rem;
+    color:var(--text-dim);
+    text-align:center;
+  }
+
+  @media (max-width:900px){
+    .nav .links{display:none;}
+    .dashboard-page-header h1{font-size:1.6rem;}
+    .dashboard-full-frame{height:70vh;}
+  }
+</style>
+
+<div class="nav">
+  <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+  <div class="nav-right">
+    <a href="login.html" class="btn-ghost-nav" style="text-decoration:none;display:inline-block;">Log In</a>
+    <a href="contact.html" class="btn-solid-nav" style="text-decoration:none;display:inline-block;">Talk to Sales</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<div class="mega-menu" id="megaMenu">
+  <div class="mega-menu-topbar">
+    <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+    <button class="menu-toggle open" id="menuToggleInside" aria-label="Close menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mega-menu-inner">
+    <div class="mega-col">
+      <div class="mega-col-title">Explore</div>
+      <a href="index.html#research">Research</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="mega-col">
+      <div class="mega-col-title">Company</div>
+      <a href="about.html#about-us">About Us</a>
+      <a href="about.html#why-choose">Why Choose Merit Digital Advisory</a>
+      <a href="story.html">The Merit Digital Story</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+      <a href="legal.html">Legal</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const t1 = document.getElementById('menuToggle');
+    const t2 = document.getElementById('menuToggleInside');
+    const menu = document.getElementById('megaMenu');
+    function toggleMenu(){
+      t1.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    t1.addEventListener('click', toggleMenu);
+    t2.addEventListener('click', toggleMenu);
+  })();
+</script>
+
+<section class="dashboard-page-header">
+  <div class="label">Live Market Dashboard</div>
+  <h1>Crypto, Forex, Commodities &amp; Indices: In One View</h1>
+  <p>Real-time pricing across the markets we cover. Data refreshes live, powered by TradingView.</p>
+</section>
+
+<section class="dashboard-full">
+  <div class="dashboard-full-frame">
+    <div class="tradingview-widget-container" style="width:100%;height:100%;">
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tv-widget-fallback" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--text-dim);font-size:.85rem;line-height:1.6;">
+        Live market data requires non-essential cookies. <a href="cookie-policy.html" style="color:var(--accent);margin-left:4px;">Manage cookie preferences</a> to view this widget.
+      </div>
+      <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js">
+      {
+      "colorTheme": "dark",
+      "dateRange": "12M",
+      "showChart": true,
+      "locale": "en",
+      "width": "100%",
+      "height": "100%",
+      "largeChartUrl": "",
+      "isTransparent": true,
+      "showSymbolLogo": true,
+      "showFloatingTooltip": false,
+      "plotLineColorGrowing": "rgba(0, 255, 167, 1)",
+      "plotLineColorFalling": "rgba(255, 82, 82, 1)",
+      "gridLineColor": "rgba(240, 243, 250, 0)",
+      "scaleFontColor": "rgba(159, 176, 172, 1)",
+      "belowLineFillColorGrowing": "rgba(0, 255, 167, 0.12)",
+      "belowLineFillColorFalling": "rgba(255, 82, 82, 0.12)",
+      "belowLineFillColorGrowingBottom": "rgba(0, 255, 167, 0)",
+      "belowLineFillColorFallingBottom": "rgba(255, 82, 82, 0)",
+      "symbolActiveColor": "rgba(0, 255, 167, 0.12)",
+      "tabs": [
+        {
+          "title": "Crypto",
+          "symbols": [
+            {"s": "BITSTAMP:BTCUSD", "d": "Bitcoin"},
+            {"s": "BITSTAMP:ETHUSD", "d": "Ethereum"},
+            {"s": "BINANCE:SOLUSDT", "d": "Solana"},
+            {"s": "BINANCE:XRPUSDT", "d": "XRP"},
+            {"s": "BINANCE:BNBUSDT", "d": "BNB"},
+            {"s": "BINANCE:ADAUSDT", "d": "Cardano"}
+          ]
+        },
+        {
+          "title": "Forex",
+          "symbols": [
+            {"s": "FX:EURUSD", "d": "EUR/USD"},
+            {"s": "FX:GBPUSD", "d": "GBP/USD"},
+            {"s": "FX:USDJPY", "d": "USD/JPY"},
+            {"s": "FX:AUDUSD", "d": "AUD/USD"},
+            {"s": "FX:USDCHF", "d": "USD/CHF"},
+            {"s": "FX:USDCAD", "d": "USD/CAD"}
+          ]
+        },
+        {
+          "title": "Commodities",
+          "symbols": [
+            {"s": "TVC:GOLD", "d": "Gold"},
+            {"s": "TVC:USOIL", "d": "Crude Oil"},
+            {"s": "TVC:SILVER", "d": "Silver"},
+            {"s": "NYMEX:NG1!", "d": "Natural Gas"}
+          ]
+        },
+        {
+          "title": "Indices",
+          "symbols": [
+            {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
+            {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq 100"},
+            {"s": "FOREXCOM:DJI", "d": "Dow 30"},
+            {"s": "FOREXCOM:RTYUSD", "d": "Russell 2000"}
+          ]
+        }
+      ]
+      }
+      </script>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="brand">Merit Digital Advisory</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/company/veloria-mason/" target="_blank" rel="noopener" aria-label="Merit Digital Advisory on LinkedIn" class="footer-linkedin">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg><span>Follow us on LinkedIn</span></a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Merit Digital Advisory. All rights reserved.</div>
+</footer>
+
+<script src="cookie-consent.js"></script>
+<script src="tv-widget-consent.js"></script>
