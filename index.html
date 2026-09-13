@@ -572,9 +572,15 @@
     overflow:hidden;
   }
   .feed-card{
+    display:block;
     padding:0 0 32px;
     border-left:1px solid var(--line);
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
   }
+  .feed-card:hover h3{color:var(--accent);}
+  .feed-card h3{transition:color .15s;}
   .feed-card:first-child{border-left:none;}
   .feed-card .band{
     background:color-mix(in srgb, var(--card-color) 16%, transparent);
@@ -837,7 +843,7 @@
   <div class="mega-menu-inner">
     <div class="mega-col">
       <div class="mega-col-title">Explore</div>
-      <a href="index.html#research">Research</a>
+      <a href="research.html">Research</a>
       <a href="services.html">Services</a>
       <a href="pricing.html">Pricing</a>
       <a href="dashboard.html">Dashboard</a>
@@ -1156,24 +1162,27 @@
     <p>Our latest thinking on the markets we cover.</p>
   </div>
   <div class="feed-grid">
-    <div class="feed-card" style="--card-color:#00ffa7;">
+    <a class="feed-card" href="research.html#crypto" style="--card-color:#00ffa7;">
       <div class="band">Crypto</div>
       <div class="meta">September 2026</div>
-      <h3>Bitcoin Liquidity and the Post-Halving Cycle</h3>
+      <h3>What's Probable for Crypto Heading Into 2027</h3>
       <p>Each of Bitcoin's four halving events cuts new coin issuance in half, tightening the pace at which new supply reaches the market. Historically, the 12&ndash;18 months following a halving have coincided with the strongest price appreciation, though the effect compounds with, rather than replaces, broader liquidity conditions and demand from institutional allocators.</p>
-    </div>
-    <div class="feed-card" style="--card-color:#38bdf8;">
+    </a>
+    <a class="feed-card" href="research.html#forex" style="--card-color:#38bdf8;">
       <div class="band">Forex</div>
       <div class="meta">September 2026</div>
-      <h3>Why Rate Differentials Don't Always Move Currencies</h3>
+      <h3>Forex Into 2027: Rate Differentials Aren't Enough</h3>
       <p>Textbook theory says higher-yielding currencies should attract capital and appreciate. In practice, that relationship weakens once markets are already pricing in future rate cuts, when risk sentiment overrides carry trades, or when a currency's safe-haven status dominates its yield. Reading forex markets on rate differentials alone increasingly misses the bigger picture.</p>
-    </div>
-    <div class="feed-card" style="--card-color:#c084fc;">
+    </a>
+    <a class="feed-card" href="research.html#equities" style="--card-color:#c084fc;">
       <div class="band">Equities</div>
       <div class="meta">September 2026</div>
-      <h3>Small-Cap Rotation: What Usually Triggers It</h3>
+      <h3>Equities Into 2027: Breadth Is the Question That Matters</h3>
       <p>Small-caps tend to outperform large-caps in two conditions: early-cycle recoveries, when risk appetite returns before earnings do, and periods of falling rates, which disproportionately benefit smaller, more leveraged companies. Telling a genuine rotation apart from a short-lived rally usually comes down to breadth: whether the move is concentrated in a few names or spread across the index.</p>
-    </div>
+    </a>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="research.html" class="btn-secondary" style="text-decoration:none;">View All Research</a>
   </div>
 </section>
 

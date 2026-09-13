@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research | Merit Digital Advisory</title>
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="favicon.png?v=2">
+<style>
+  :root{
+    --bg:#06080b;
+    --bg-soft:rgba(255,255,255,.04);
+    --card:rgba(255,255,255,.045);
+    --text:#f3f6f5;
+    --text-dim:#9fb0ac;
+    --accent:#00ffa7;
+    --accent-dark:#00cc86;
+    --accent-text:#04140d;
+    --line:rgba(255,255,255,.1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,Helvetica,sans-serif;}
+  h1,h2,h3{font-weight:600;letter-spacing:-.01em;}
+  a{color:inherit;}
+
+  /* ===== NAV ===== */
+  .nav{
+    position:sticky;top:0;z-index:200;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;
+    background:rgba(6,8,11,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .brand{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+  .nav .brand img{height:48px;width:auto;display:block;}
+  .mega-menu-topbar .brand img{height:48px;width:auto;display:block;}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .btn-ghost-nav{font-size:.82rem;padding:9px 18px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text);cursor:pointer;}
+  .btn-ghost-nav:hover{border-color:var(--accent);}
+  .btn-solid-nav{font-size:.82rem;padding:9px 18px;border:none;border-radius:8px;background:var(--accent);color:var(--accent-text);font-weight:600;cursor:pointer;}
+  .btn-solid-nav:hover{background:var(--accent-dark);}
+  .menu-toggle{
+    width:28px;height:18px;display:flex;flex-direction:column;justify-content:space-between;
+    background:none;border:none;cursor:pointer;padding:0;
+  }
+  .menu-toggle span{display:block;height:2px;background:var(--text);border-radius:2px;transition:.25s;}
+  .menu-toggle span:nth-child(1){width:100%;}
+  .menu-toggle span:nth-child(2){width:65%;margin-left:auto;}
+  .menu-toggle span:nth-child(3){width:40%;}
+  .menu-toggle.open span{width:100%;margin-left:0;}
+  .menu-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+
+  .mega-menu{
+    position:fixed;inset:0;
+    background:rgba(6,8,11,.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    z-index:300;
+    opacity:0;visibility:hidden;
+    transition:opacity .3s, visibility .3s;
+    overflow-y:auto;
+  }
+  .mega-menu.open{opacity:1;visibility:visible;}
+  .mega-menu-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;
+  }
+  .mega-menu-inner{
+    max-width:900px;margin:0 auto;padding:40px 24px 100px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:60px;
+  }
+  .mega-col-title{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:700;}
+  .mega-col a{display:block;color:var(--text-dim);text-decoration:none;font-size:1.35rem;font-weight:600;padding:10px 0;transition:color .15s;}
+  .mega-col a:hover{color:var(--accent);}
+
+  /* ===== HERO ===== */
+  .research-hero{
+    position:relative;padding:80px 24px 40px;text-align:center;
+    background:
+      radial-gradient(circle at 30% 15%, rgba(0,255,167,.12), transparent 50%),
+      radial-gradient(circle at 75% 55%, rgba(0,120,90,.25), transparent 55%),
+      linear-gradient(180deg, #061713 0%, #06090c 60%, #06080b 100%);
+    overflow:hidden;
+  }
+  .research-hero .label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .research-hero h1{font-size:2.2rem;margin:0 auto 16px;max-width:700px;}
+  .research-hero p{color:var(--text-dim);font-size:1rem;line-height:1.75;max-width:620px;margin:0 auto;}
+  .research-hero .meta{font-size:.78rem;color:var(--text-dim);margin-top:20px;}
+
+  /* ===== MARKET NAV ===== */
+  .market-nav{
+    max-width:1100px;margin:24px auto 0;padding:0 24px;
+    display:flex;gap:8px;flex-wrap:wrap;
+  }
+  .market-nav a{
+    font-size:.82rem;padding:9px 16px;border:1px solid var(--line);border-radius:8px;
+    text-decoration:none;color:var(--text-dim);
+  }
+  .market-nav a:hover{border-color:var(--accent);color:var(--text);}
+
+  /* ===== ARTICLE SECTIONS ===== */
+  .research-article{
+    max-width:820px;margin:0 auto;padding:80px 24px;
+    border-top:1px solid var(--line);
+  }
+  .research-article:first-of-type{border-top:none;}
+  .research-article .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .research-article h2{font-size:1.7rem;margin:0 0 10px;}
+  .research-article .byline{font-size:.8rem;color:var(--text-dim);margin-bottom:32px;}
+  .research-article h3{font-size:1.05rem;margin:32px 0 12px;}
+  .research-article p{color:var(--text-dim);font-size:.98rem;line-height:1.85;margin:0 0 16px;}
+  .research-article ul{color:var(--text-dim);font-size:.98rem;line-height:1.85;padding-left:22px;margin:0 0 16px;}
+  .research-article li{margin-bottom:8px;}
+  .research-article strong{color:var(--text);}
+
+  .disclaimer{
+    max-width:820px;margin:0 auto;padding:0 24px 80px;
+  }
+  .disclaimer p{
+    font-size:.82rem;color:var(--text-dim);line-height:1.7;
+    padding:20px 22px;border:1px solid var(--line);border-radius:10px;background:var(--bg-soft);
+    margin:0;
+  }
+  .disclaimer a{color:var(--accent);}
+
+  footer{border-top:1px solid var(--line);padding:50px 24px 30px;}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:30px;border-bottom:1px solid var(--line);}
+  .footer-links{display:flex;gap:26px;font-size:.85rem;color:var(--text-dim);flex-wrap:wrap;}
+  .footer-links a{text-decoration:none;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-linkedin{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:8px;border:1px solid var(--line);color:var(--text-dim);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .15s,border-color .15s;}
+  .footer-linkedin:hover{color:var(--accent);border-color:var(--accent);}
+  .footer-bottom{max-width:1200px;margin:0 auto;padding-top:22px;font-size:.78rem;color:var(--text-dim);text-align:center;}
+
+  @media (max-width:900px){
+    .research-hero h1{font-size:1.7rem;}
+  }
+
+  @media (max-width:480px){
+    .nav{padding:14px 16px;}
+    .nav .brand{font-size:.9rem;gap:8px;}
+    .nav .brand img{height:32px;}
+    .nav-right{gap:8px;}
+    .btn-ghost-nav,.btn-solid-nav{padding:8px 12px;font-size:.76rem;}
+  }
+</style>
+
+<div class="nav">
+  <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+  <div class="nav-right">
+    <a href="login.html" class="btn-ghost-nav" style="text-decoration:none;display:inline-block;">Log In</a>
+    <a href="contact.html" class="btn-solid-nav" style="text-decoration:none;display:inline-block;">Talk to Sales</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<div class="mega-menu" id="megaMenu">
+  <div class="mega-menu-topbar">
+    <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+    <button class="menu-toggle open" id="menuToggleInside" aria-label="Close menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mega-menu-inner">
+    <div class="mega-col">
+      <div class="mega-col-title">Explore</div>
+      <a href="research.html">Research</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="mega-col">
+      <div class="mega-col-title">Company</div>
+      <a href="about.html#about-us">About Us</a>
+      <a href="about.html#why-choose">Why Choose Merit Digital Advisory</a>
+      <a href="story.html">The Merit Digital Story</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+      <a href="legal.html">Legal</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const t1 = document.getElementById('menuToggle');
+    const t2 = document.getElementById('menuToggleInside');
+    const menu = document.getElementById('megaMenu');
+    function toggleMenu(){
+      t1.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    t1.addEventListener('click', toggleMenu);
+    t2.addEventListener('click', toggleMenu);
+  })();
+</script>
+
+<section class="research-hero">
+  <div class="label">Research</div>
+  <h1>Where We See Markets Heading Into 2027</h1>
+  <p>Our independent read across crypto, forex, commodities, and equities, updated as conditions change. This is analysis to inform your own decisions, not investment advice.</p>
+  <div class="meta">Last updated: September 2026</div>
+</section>
+
+<nav class="market-nav">
+  <a href="#crypto">Crypto</a>
+  <a href="#forex">Forex</a>
+  <a href="#commodities">Commodities</a>
+  <a href="#equities">Equities</a>
+</nav>
+
+<article class="research-article" id="crypto">
+  <div class="tag">Crypto</div>
+  <h2>What's Probable for Crypto Heading Into 2027</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>Bitcoin's post-halving cycle has historically driven the strongest price appreciation in the 12 to 18 months following supply issuance cuts. If that pattern holds, the window of strongest momentum has likely already passed by the time 2027 opens, which shifts our attention from "is the cycle still running" to "what happens once it cools."</p>
+
+  <h3>What We're Watching</h3>
+  <ul>
+    <li><strong>Institutional allocation, not retail sentiment.</strong> Spot ETF flows and corporate treasury allocations have become a larger share of demand than retail speculation. That makes crypto more correlated with broader risk appetite and liquidity conditions than in prior cycles, and less driven by halving mechanics alone.</li>
+    <li><strong>Regulatory clarity in major markets.</strong> Clearer frameworks in the US, UK, and EU reduce a discount that's been priced into the market for years. Continued clarity into 2027 is a plausible tailwind; a reversal would be a meaningful headwind.</li>
+    <li><strong>Ethereum and the broader layer-1 landscape.</strong> Adoption of real-world asset tokenization and stablecoin settlement infrastructure matters more for 2027 valuations than speculative narrative cycles.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>We see a probable scenario where crypto behaves less like a standalone asset class and more like a leveraged extension of broader risk sentiment by 2027, meaning macro liquidity conditions (rate policy, dollar strength) will likely explain more of the year's price action than crypto-specific catalysts. That's a shift from prior cycles, and one we think is underappreciated by narratives still anchored to halving mechanics alone.</p>
+</article>
+
+<article class="research-article" id="forex">
+  <div class="tag">Forex</div>
+  <h2>Forex Into 2027: Rate Differentials Aren't Enough</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>The textbook relationship between interest rate differentials and currency strength has weakened noticeably. Markets increasingly price in expected rate paths well before central banks act, which means currency moves are driven more by the surprise relative to expectations than the rate level itself.</p>
+
+  <h3>What We're Watching</h3>
+  <ul>
+    <li><strong>Divergence between the Fed, ECB, and BoE policy paths.</strong> The size and timing of that divergence, not the absolute level of any single central bank's rate, is what we expect to drive major pair volatility through 2027.</li>
+    <li><strong>Safe-haven demand independent of yield.</strong> The dollar and yen have both shown periods where their safe-haven status overrides their yield story entirely. We expect this decoupling to continue whenever geopolitical or growth risk spikes.</li>
+    <li><strong>Emerging market currency resilience.</strong> A number of EM central banks have built larger reserve buffers since 2022. That changes how EM currencies respond to Fed policy shifts compared to prior tightening cycles.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>We think 2027 is more likely to be a year of range-bound majors punctuated by sharp, event-driven moves, rather than a sustained directional trend in any single pair. Positioning for volatility around specific catalysts (central bank meetings, election cycles) is likely to matter more than a single directional macro call.</p>
+</article>
+
+<article class="research-article" id="commodities">
+  <div class="tag">Commodities</div>
+  <h2>Commodities Into 2027: Supply Discipline Meets Demand Uncertainty</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>Energy and metals markets are currently shaped by a tension between disciplined supply (producers reluctant to overinvest after the 2020&ndash;2022 volatility) and uncertain demand tied to the pace of the global energy transition and industrial activity in China.</p>
+
+  <h3>What We're Watching</h3>
+  <ul>
+    <li><strong>Gold's role as a reserve diversification asset.</strong> Central bank gold buying, particularly outside traditional Western reserve holders, has been a structural demand source that's independent of retail investor sentiment. We expect this to remain a floor under gold prices into 2027.</li>
+    <li><strong>Oil supply discipline versus demand growth.</strong> OPEC+ spare capacity decisions matter more than they have in years, given that shale producers have generally prioritized capital discipline over aggressive production growth.</li>
+    <li><strong>Industrial metals and the energy transition timeline.</strong> Copper and lithium demand assumptions tied to electrification continue to run ahead of near-term realized demand, creating a gap that could resolve in either direction.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>We see gold's structural bid persisting into 2027 regardless of the rate cycle, while oil is more likely to stay range-bound unless a genuine supply shock forces OPEC+'s hand. Industrial metals carry the widest range of outcomes of any commodity we cover, since so much of the demand thesis depends on the actual pace, not the promised pace, of electrification.</p>
+</article>
+
+<article class="research-article" id="equities">
+  <div class="tag">Equities</div>
+  <h2>Equities Into 2027: Breadth Is the Question That Matters</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>Large-cap index performance has been concentrated in a small number of mega-cap names for several consecutive years. The question that matters most for 2027 isn't whether the index goes up, but whether that gain is broad-based or concentrated in the same handful of names.</p>
+
+  <h3>What We're Watching</h3>
+  <ul>
+    <li><strong>Small-cap rotation signals.</strong> Small-caps have historically outperformed in early-cycle recoveries and falling-rate environments. Whether that pattern plays out depends on whether rate cuts materialize as a genuine easing cycle or a one-off adjustment.</li>
+    <li><strong>Earnings growth outside mega-cap tech.</strong> If earnings growth broadens beyond the largest index constituents, we'd expect market breadth to improve meaningfully. If it doesn't, index-level gains will likely keep masking a much weaker picture underneath.</li>
+    <li><strong>Valuation dispersion.</strong> The gap between the most and least expensive segments of the market remains historically wide, which tends to create better relative-value opportunities for investors willing to look outside the largest names.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>We think 2027 is a more plausible year for broadening market participation than the last several years have been, but we're treating this as a real possibility to monitor, not a base case to bet on outright. Breadth has been "about to improve" in market commentary for a while now without fully materializing, and we'd rather see it confirmed in the data than call it in advance.</p>
+</article>
+
+<div class="disclaimer">
+  <p>This research reflects Merit Digital Advisory's independent analysis as of the publication date and is provided for informational purposes only. It does not constitute investment, financial, legal, or tax advice, and nothing here should be read as a recommendation to buy, sell, or hold any financial instrument. Markets are inherently unpredictable, and outcomes may differ materially from what's discussed above. See our <a href="terms-of-service.html">Terms of Service</a> for more on how our research should be used.</p>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="brand">Merit Digital Advisory</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/company/veloria-mason/" target="_blank" rel="noopener" aria-label="Merit Digital Advisory on LinkedIn" class="footer-linkedin">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg><span>Follow us on LinkedIn</span></a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Merit Digital Advisory. All rights reserved.</div>
+</footer>
+
+<script src="cookie-consent.js"></script>
+<script src="touch-hover.js"></script>
