@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Merit Digital Advisory | Design Draft</title>
@@ -791,6 +792,13 @@
     text-align:center;
   }
 
+  .tv-mobile-only{display:none;}
+  @media (max-width:600px){
+    .dashboard-frame{aspect-ratio:auto;height:auto;padding:4px;}
+    .tv-desktop-only{display:none;}
+    .tv-mobile-only{display:block;}
+  }
+
   @media (max-width:900px){
     .client-grid,.research-grid,.pricing-grid{grid-template-columns:1fr;}
     .services-inner{grid-template-columns:1fr;}
@@ -872,11 +880,11 @@
   </div>
   <div class="dashboard-preview" id="dashboard">
     <div class="dashboard-frame">
-      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+      <div class="tv-widget-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--text-dim);font-size:.85rem;line-height:1.6;">
+        Live market data requires non-essential cookies. <a href="cookie-policy.html" style="color:var(--accent);margin-left:4px;">Manage cookie preferences</a> to view this widget.
+      </div>
+      <div class="tradingview-widget-container tv-desktop-only" style="width:100%;height:100%;">
         <div class="tradingview-widget-container__widget"></div>
-        <div class="tv-widget-fallback" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--text-dim);font-size:.85rem;line-height:1.6;">
-          Live market data requires non-essential cookies. <a href="cookie-policy.html" style="color:var(--accent);margin-left:4px;">Manage cookie preferences</a> to view this widget.
-        </div>
         <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js">
         {
         "colorTheme": "dark",
@@ -928,6 +936,28 @@
             ]
           }
         ]
+        }
+        </script>
+      </div>
+      <div class="tradingview-widget-container tv-mobile-only" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js">
+        {
+        "symbols": [
+          {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+          {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+          {"proName": "FX:EURUSD", "title": "EUR/USD"},
+          {"proName": "FX:GBPUSD", "title": "GBP/USD"},
+          {"proName": "TVC:GOLD", "title": "Gold"},
+          {"proName": "TVC:USOIL", "title": "Crude Oil"},
+          {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+          {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100"}
+        ],
+        "showSymbolLogo": true,
+        "isTransparent": true,
+        "displayMode": "adaptive",
+        "colorTheme": "dark",
+        "locale": "en"
         }
         </script>
       </div>
@@ -1190,3 +1220,4 @@
 
 <script src="cookie-consent.js"></script>
 <script src="tv-widget-consent.js"></script>
+<script src="touch-hover.js"></script>
