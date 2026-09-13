@@ -195,10 +195,22 @@
   }
 
   @media (max-width:600px){
-    .dashboard-full-frame{height:auto;min-height:0;padding:4px;}
+    .dashboard-full-frame{height:auto;min-height:0;padding:10px;overflow:visible;}
     .tv-desktop-only{display:none;}
     .tv-mobile-only{display:block;height:auto!important;}
     .tv-widget-fallback{height:auto!important;min-height:140px;padding:32px 20px!important;}
+    .tv-mini-grid{
+      display:grid!important;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .tv-mini-grid .tradingview-widget-container{
+      height:170px!important;
+      border:1px solid var(--line);
+      border-radius:10px;
+      overflow:hidden;
+      background:rgba(255,255,255,.02);
+    }
   }
 
   @media (max-width:480px){
@@ -338,27 +350,55 @@
       }
       </script>
     </div>
-    <div class="tradingview-widget-container tv-mobile-only" style="width:100%;height:100%;">
-      <div class="tradingview-widget-container__widget"></div>
-      <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js">
-      {
-      "symbols": [
-        {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
-        {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
-        {"proName": "FX:EURUSD", "title": "EUR/USD"},
-        {"proName": "FX:GBPUSD", "title": "GBP/USD"},
-        {"proName": "TVC:GOLD", "title": "Gold"},
-        {"proName": "TVC:USOIL", "title": "Crude Oil"},
-        {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
-        {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100"}
-      ],
-      "showSymbolLogo": true,
-      "isTransparent": true,
-      "displayMode": "adaptive",
-      "colorTheme": "dark",
-      "locale": "en"
-      }
-      </script>
+    <div class="tv-mobile-only tv-mini-grid">
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"BITSTAMP:BTCUSD","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"BITSTAMP:ETHUSD","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"FX:EURUSD","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"FX:GBPUSD","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"TVC:GOLD","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"TVC:USOIL","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"FOREXCOM:SPXUSD","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
+      <div class="tradingview-widget-container" style="width:100%;height:100%;">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="application/json" class="tv-widget-config" data-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js">
+        {"symbol":"FOREXCOM:NSXUSD","width":"100%","height":"100%","locale":"en","dateRange":"1M","colorTheme":"dark","isTransparent":true,"autosize":true}
+        </script>
+      </div>
     </div>
   </div>
 </section>

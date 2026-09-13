@@ -1,8 +1,14 @@
 (function(){
   function isHidden(cfg){
-    var parent = cfg.closest('.tradingview-widget-container');
-    if (!parent) return false;
-    return getComputedStyle(parent).display === 'none';
+    // Walk up the ancestor chain rather than checking only the immediate
+    // parent: a widget can be hidden by a wrapper further up (e.g. the
+    // mobile mini-chart grid), not just its own direct container.
+    var el = cfg.parentElement;
+    while (el) {
+      if (getComputedStyle(el).display === 'none') return true;
+      el = el.parentElement;
+    }
+    return false;
   }
   function loadWidgets(){
     document.querySelectorAll('script.tv-widget-config').forEach(function(cfg){
@@ -15,7 +21,8 @@
       s.src = cfg.dataset.src;
       s.textContent = cfg.textContent;
       cfg.parentElement.insertBefore(s, cfg);
-      var fallback = cfg.parentElement.parentElement.querySelector('.tv-widget-fallback');
+      var card = cfg.closest('.dashboard-full-frame, .dashboard-frame') || cfg.parentElement.parentElement;
+      var fallback = card && card.querySelector('.tv-widget-fallback');
       if (fallback) fallback.style.display = 'none';
     });
   }
