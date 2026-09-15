@@ -20,13 +20,13 @@
     'transform:translateY(110%);transition:transform .35s ease;}',
     '#mdCookieBanner.open{transform:translateY(0);}',
     '#mdCookieBanner p{margin:0;color:#9fb0ac;font-size:.85rem;line-height:1.6;max-width:560px;}',
-    '#mdCookieBanner a{color:#00ffa7;text-decoration:underline;}',
+    '#mdCookieBanner a{color:#5d6bee;text-decoration:underline;}',
     '#mdCookieBanner .md-cookie-actions{display:flex;gap:10px;flex-wrap:wrap;}',
     '#mdCookieBanner button{font-size:.82rem;padding:10px 18px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600;}',
-    '#mdCookieBanner .md-accept{background:#00ffa7;color:#04140d;border:none;}',
-    '#mdCookieBanner .md-accept:hover{background:#00cc86;}',
+    '#mdCookieBanner .md-accept{background:#5d6bee;color:#ffffff;border:none;}',
+    '#mdCookieBanner .md-accept:hover{background:#4650c4;}',
     '#mdCookieBanner .md-essential{background:transparent;color:#f3f6f5;border:1px solid rgba(255,255,255,.1);}',
-    '#mdCookieBanner .md-essential:hover{border-color:#00ffa7;}'
+    '#mdCookieBanner .md-essential:hover{border-color:#5d6bee;}'
   ].join('');
   document.head.appendChild(style);
 
