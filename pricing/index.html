@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact | Merit Digital Advisory</title>
-<link rel="icon" type="image/png" href="favicon.png?v=2">
-<link rel="apple-touch-icon" href="favicon.png?v=2">
+<title>Pricing | Merit Digital Advisory</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/favicon.png?v=2">
 <style>
   :root{
     --bg:#06080b;
@@ -115,8 +115,8 @@
 
 
 
-  /* ===== CONTACT PAGE ===== */
-  .contact-page-header{
+  /* ===== PRICING PAGE HEADER ===== */
+  .pricing-page-header{
     position:relative;
     padding:80px 24px 40px;
     text-align:center;
@@ -126,7 +126,7 @@
       linear-gradient(180deg, #061713 0%, #06090c 60%, #06080b 100%);
     overflow:hidden;
   }
-  .contact-page-header .label{
+  .pricing-page-header .label{
     font-size:.72rem;
     letter-spacing:.14em;
     text-transform:uppercase;
@@ -135,70 +135,100 @@
     position:relative;
     z-index:2;
   }
-  .contact-page-header h1{font-size:2.3rem;margin:0 0 16px;position:relative;z-index:2;}
-  .contact-page-header p{
+  .pricing-page-header h1{font-size:2.3rem;margin:0 0 16px;position:relative;z-index:2;}
+  .pricing-page-header p{
     color:var(--text-dim);
     font-size:1.05rem;
-    max-width:620px;
+    max-width:640px;
     margin:0 auto;
     line-height:1.7;
     position:relative;
     z-index:2;
   }
 
-  .contact-section{
-    max-width:700px;
-    margin:0 auto;
+  /* ===== PRICING ===== */
+  .pricing-section{
     padding:64px 24px 100px;
   }
-  .contact-form label{
-    display:block;
-    font-size:.72rem;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    color:var(--text-dim);
-    margin-bottom:8px;
+  .pricing-grid{
+    max-width:1100px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
   }
-  .contact-form input,.contact-form select,.contact-form textarea{
-    width:100%;
-    padding:13px 14px;
-    margin-bottom:20px;
+  .price-card{
+    --card-color:var(--accent);
     background:var(--card);
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
     border:1px solid var(--line);
+    border-radius:12px;
+    padding:36px 30px;
+    display:flex;
+    flex-direction:column;
+    transition:border-color .3s, transform .3s, box-shadow .3s, background .3s;
+  }
+  .price-card:hover{
+    border-color:var(--card-color);
+    transform:translateY(-4px);
+    background:linear-gradient(160deg, color-mix(in srgb, var(--card-color) 20%, transparent), var(--card) 65%);
+    box-shadow:0 0 50px -8px color-mix(in srgb, var(--card-color) 60%, transparent), 0 30px 60px rgba(0,0,0,.4);
+  }
+  .price-card.featured{border-color:var(--accent);position:relative;}
+  .price-card.featured::before{
+    content:"MOST POPULAR";
+    position:absolute;
+    top:-1px;left:-1px;right:-1px;
+    background:var(--accent);
+    color:var(--accent-text);
+    font-size:.65rem;
+    letter-spacing:.1em;
+    text-align:center;
+    padding:6px;
+    font-weight:700;
+  }
+  .price-card.featured{padding-top:56px;}
+  .price-card h3{font-size:1.2rem;margin:0 0 8px;}
+  .price-card .price{font-size:1.7rem;font-weight:700;margin:0 0 4px;}
+  .price-card .price span{font-size:.85rem;color:var(--text-dim);font-weight:400;}
+  .price-card .desc{color:var(--text-dim);font-size:.85rem;margin:0 0 24px;}
+  .price-card ul{list-style:none;padding:0;margin:0 0 28px;flex:1;}
+  .price-card li{
+    font-size:.85rem;
+    color:var(--text-dim);
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .price-card li::before{content:"✓ ";color:#ffffff;}
+  .price-card.featured li::before{color:#ffffff;}
+  .price-card .btn-secondary,.price-card .btn-primary{text-align:center;width:100%;}
+  .price-card.featured .btn-primary{background:var(--accent);color:var(--accent-text);}
+  .price-card.featured .btn-primary:hover{background:var(--accent-dark);}
+  .btn-primary{
+    display:inline-block;
+    background:var(--accent);
+    color:var(--accent-text);
+    font-weight:700;
+    padding:16px 32px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:.92rem;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary:hover{background:var(--accent-dark);}
+  .btn-secondary{
+    display:inline-block;
+    background:transparent;
+    border:1px solid var(--line);
     border-radius:8px;
     color:var(--text);
-    font-family:inherit;
+    padding:16px 32px;
+    text-decoration:none;
     font-size:.92rem;
   }
-  .contact-form textarea{min-height:110px;resize:vertical;}
-  .contact-form button{width:100%;border-radius:8px;}
-  .contact-form button:disabled{opacity:.5;cursor:not-allowed;}
-  .consent-row{
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-    margin:4px 0 24px;
-  }
-  .consent-row input[type="checkbox"]{
-    width:auto;
-    margin:3px 0 0;
-    flex-shrink:0;
-    accent-color:var(--accent);
-    cursor:pointer;
-  }
-  .consent-row label{
-    text-transform:none;
-    letter-spacing:normal;
-    font-size:.82rem;
-    line-height:1.65;
-    color:var(--text-dim);
-    margin:0;
-    cursor:pointer;
-  }
-  .consent-row a{color:var(--accent);text-decoration:underline;}
-  .consent-row a:hover{color:var(--accent-dark);}
+  .btn-secondary:hover{border-color:var(--accent);}
 
   footer{
     border-top:1px solid var(--line);
@@ -230,7 +260,8 @@
 
   @media (max-width:900px){
     .nav .links{display:none;}
-    .contact-page-header h1{font-size:1.7rem;}
+    .pricing-page-header h1{font-size:1.7rem;}
+    .pricing-grid{grid-template-columns:1fr;}
   }
 
   @media (max-width:480px){
@@ -243,35 +274,35 @@
 </style>
 
 <div class="nav">
-  <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+  <a href="/" style="text-decoration:none;"><div class="brand"><img src="/logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
   <div class="nav-right">
-    <a href="login.html" class="btn-ghost-nav" style="text-decoration:none;display:inline-block;">Log In</a>
-    <a href="contact.html" class="btn-solid-nav" style="text-decoration:none;display:inline-block;">Talk to Sales</a>
+    <a href="/login" class="btn-ghost-nav" style="text-decoration:none;display:inline-block;">Log In</a>
+    <a href="/contact" class="btn-solid-nav" style="text-decoration:none;display:inline-block;">Talk to Sales</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </div>
 
 <div class="mega-menu" id="megaMenu">
   <div class="mega-menu-topbar">
-    <a href="index.html" style="text-decoration:none;"><div class="brand"><img src="logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
+    <a href="/" style="text-decoration:none;"><div class="brand"><img src="/logo-icon.png" alt="Merit Digital Advisory">Merit Digital Advisory</div></a>
     <button class="menu-toggle open" id="menuToggleInside" aria-label="Close menu"><span></span><span></span><span></span></button>
   </div>
   <div class="mega-menu-inner">
     <div class="mega-col">
       <div class="mega-col-title">Explore</div>
-      <a href="research.html">Research</a>
-      <a href="services.html">Services</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="dashboard.html">Dashboard</a>
+      <a href="/research">Research</a>
+      <a href="/services">Services</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/dashboard">Dashboard</a>
     </div>
     <div class="mega-col">
       <div class="mega-col-title">Company</div>
-      <a href="about.html#about-us">About Us</a>
-      <a href="about.html#why-choose">Why Choose Merit Digital Advisory</a>
-      <a href="story.html">The Merit Digital Story</a>
-      <a href="careers.html">Careers</a>
-      <a href="contact.html">Contact</a>
-      <a href="legal.html">Legal</a>
+      <a href="/about#about-us">About Us</a>
+      <a href="/about#why-choose">Why Choose Merit Digital Advisory</a>
+      <a href="/story">The Merit Digital Story</a>
+      <a href="/careers">Careers</a>
+      <a href="/contact">Contact</a>
+      <a href="/legal">Legal</a>
     </div>
   </div>
 </div>
@@ -291,48 +322,52 @@
   })();
 </script>
 
-<section class="contact-page-header">
-  <div class="label">Contact</div>
-  <h1>Hi, Tell Us What You Need</h1>
-  <p>We'll get back to you and help figure out which plan fits your business best, whether that's Basic, Professional, or a custom Enterprise engagement.</p>
+<section class="pricing-page-header">
+  <div class="label">Pricing</div>
+  <h1>Find the Plan That Fits Your Business</h1>
+  <p>Everyone has different needs and priorities. Take a look at the options below and tell us which one sounds like the right fit for you.</p>
 </section>
 
-<section class="contact-section">
-  <form class="contact-form" action="https://formspree.io/f/mrpgvwjz" method="POST">
-    <input type="hidden" name="_subject" value="New inquiry from Merit Digital Advisory website">
-    <label for="fieldName">Name</label>
-    <input type="text" id="fieldName" name="name" required>
-    <label for="fieldCompany">Company</label>
-    <input type="text" id="fieldCompany" name="company" required>
-    <label for="fieldClientType">Client Type</label>
-    <select id="fieldClientType" name="client_type" required>
-      <option value="">Please choose a client type</option>
-      <option>Institutional Investor</option>
-      <option>Corporate Treasury</option>
-      <option>Family Office</option>
-      <option>Other</option>
-    </select>
-    <label for="fieldEmail">Email</label>
-    <input type="email" id="fieldEmail" name="_replyto" required>
-    <label for="fieldMessage">Message</label>
-    <textarea id="fieldMessage" name="message" required></textarea>
-    <div class="consent-row">
-      <input type="checkbox" id="consentCheckbox" name="consent" required>
-      <label for="consentCheckbox">By ticking this box, you agree that you have read and accept the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank">Terms of Service</a>, and you consent to Merit Digital Advisory using the information you've provided to contact you with marketing and other promotional communications.</label>
+<section class="pricing-section">
+  <div class="pricing-grid">
+    <div class="price-card" style="--card-color:#5d6bee;">
+      <h3>Basic</h3>
+      <div class="price">$3,600&ndash;$9,600<span>/yr</span></div>
+      <div class="desc">Essential research and market access for smaller teams getting started.</div>
+      <ul>
+        <li>Weekly research reports (crypto, forex, equities, commodities)</li>
+        <li>Live market dashboard access</li>
+        <li>Merit Market Pulse updates</li>
+      </ul>
+      <a href="/contact" class="btn-secondary">Talk to Sales</a>
     </div>
-    <button type="submit" id="contactSubmit" class="btn-primary" style="background:var(--accent);color:var(--accent-text);font-weight:700;padding:16px 32px;border:none;font-size:.92rem;cursor:pointer;" disabled>Send Message</button>
-  </form>
+    <div class="price-card featured" style="--card-color:#5d6bee;">
+      <h3>Professional</h3>
+      <div class="price">$18,000&ndash;$48,000<span>/yr</span></div>
+      <div class="desc">Deeper research and real-time tools for active teams.</div>
+      <ul>
+        <li>Everything in Basic</li>
+        <li>Risk &amp; diligence reports</li>
+        <li>Real-time market alerts</li>
+        <li>Monthly consultation call</li>
+      </ul>
+      <a href="/contact" class="btn-primary">Talk to Sales</a>
+    </div>
+    <div class="price-card" style="--card-color:#5d6bee;">
+      <h3>Enterprise</h3>
+      <div class="price">$60,000&ndash;$150,000<span>/yr</span></div>
+      <div class="desc">A dedicated, one-on-one partnership built around your business.</div>
+      <ul>
+        <li>Everything in Professional</li>
+        <li>Custom research tailored to your specific markets and goals</li>
+        <li>Dedicated one-on-one advisor who gets to know your business</li>
+        <li>Ongoing strategy consultations, not just one-off reports</li>
+        <li>Priority support and flexible engagement</li>
+      </ul>
+      <a href="/contact" class="btn-secondary">Talk to Sales</a>
+    </div>
+  </div>
 </section>
-
-<script>
-  (function(){
-    var consent = document.getElementById('consentCheckbox');
-    var submitBtn = document.getElementById('contactSubmit');
-    consent.addEventListener('change', function(){
-      submitBtn.disabled = !consent.checked;
-    });
-  })();
-</script>
 
 <footer>
   <div class="footer-inner">
@@ -345,5 +380,5 @@
   <div class="footer-bottom">&copy; 2026 Merit Digital Advisory. All rights reserved.</div>
 </footer>
 
-<script src="cookie-consent.js"></script>
-<script src="touch-hover.js"></script>
+<script src="/cookie-consent.js"></script>
+<script src="/touch-hover.js"></script>

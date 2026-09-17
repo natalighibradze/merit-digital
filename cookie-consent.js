@@ -35,7 +35,7 @@
   banner.setAttribute('role', 'dialog');
   banner.setAttribute('aria-label', 'Cookie preferences');
   banner.innerHTML =
-    '<p>We use essential cookies to run this site, and, with your consent, non-essential cookies for embedded market data tools. See our <a href="cookie-policy.html">Cookie Policy</a> for details.</p>' +
+    '<p>We use essential cookies to run this site, and, with your consent, non-essential cookies for embedded market data tools. See our <a href="/cookie-policy">Cookie Policy</a> for details.</p>' +
     '<div class="md-cookie-actions">' +
       '<button type="button" class="md-essential" id="mdCookieEssential">Essential Only</button>' +
       '<button type="button" class="md-accept" id="mdCookieAccept">Accept All</button>' +
