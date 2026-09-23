@@ -111,13 +111,14 @@
     text-decoration:none;color:var(--text-dim);
   }
   .market-nav a:hover{border-color:var(--accent);color:var(--text);}
+  .market-nav a.active{border-color:var(--accent);color:var(--text);background:rgba(124,124,255,.08);}
 
   /* ===== ARTICLE SECTIONS ===== */
   .research-article{
     max-width:820px;margin:0 auto;padding:80px 24px;
-    border-top:1px solid var(--line);
+    display:none;
   }
-  .research-article:first-of-type{border-top:none;}
+  .research-article.active{display:block;}
   .research-article .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
   .research-article h2{font-size:1.7rem;margin:0 0 10px;}
   .research-article .byline{font-size:.8rem;color:var(--text-dim);margin-bottom:32px;}
@@ -215,6 +216,7 @@
   <div class="meta">Last updated: September 2026</div>
 </section>
 
+<noscript><style>.research-article{display:block!important;}</style></noscript>
 <nav class="market-nav">
   <a href="#crypto">Crypto</a>
   <a href="#forex">Forex</a>
@@ -330,6 +332,34 @@
   <div class="footer-bottom">&copy; 2026 Merit Digital Advisory. All rights reserved.</div>
 </footer>
 
+<script>
+(function(){
+  var nav = document.querySelectorAll('.market-nav a');
+  var articles = document.querySelectorAll('.research-article');
+  function show(id){
+    var found = false;
+    articles.forEach(function(a){
+      var on = a.id === id;
+      a.classList.toggle('active', on);
+      if(on) found = true;
+    });
+    if(!found && articles.length){ articles[0].classList.add('active'); id = articles[0].id; }
+    nav.forEach(function(link){
+      link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+    });
+  }
+  nav.forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = link.getAttribute('href').slice(1);
+      show(id);
+      history.replaceState(null, '', '#' + id);
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  });
+  show((location.hash || '').slice(1) || (articles[0] && articles[0].id));
+})();
+</script>
 <script src="/cookie-consent.js"></script>
 <script src="/touch-hover.js"></script>
 </html>
