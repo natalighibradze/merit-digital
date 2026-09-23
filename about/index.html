@@ -123,13 +123,13 @@
     border:1px solid var(--line);
     border-radius:4px;
     display:flex;align-items:center;justify-content:center;
-    padding:16%;
+    padding:8%;
     overflow:hidden;
+    background:transparent;
   }
-  .about-hero-logo-cell.filled{background:#f3f6f5;}
   .about-hero-logo-cell.badge{padding:6%;}
   .about-hero-logo-cell img{max-width:100%;max-height:100%;object-fit:contain;}
-  .about-hero-logo-cell.empty{background:transparent;}
+  .about-hero-logo-cell.blank{border:none;}
   @media (max-width:900px){
     .about-hero-logos{grid-template-columns:repeat(3,1fr);}
     .about-hero-logos > div:nth-child(4n+2),
@@ -248,19 +248,19 @@
       <p class="about-note">Merit Digital Advisory is not affiliated with Merit Advisory Services or any other company with a similar name.</p>
     </div>
     <div class="about-hero-logos">
-      <div class="about-hero-logo-cell empty"></div>
+      <div class="about-hero-logo-cell blank"></div>
       <div class="about-hero-logo-cell"><img src="/logo-tradingview.png" alt="TradingView"></div>
       <div class="about-hero-logo-cell badge"><img src="/logo-coingecko.png" alt="CoinGecko"></div>
-      <div class="about-hero-logo-cell empty"></div>
+      <div class="about-hero-logo-cell blank"></div>
 
       <div class="about-hero-logo-cell badge"><img src="/logo-investing.png" alt="Investing.com"></div>
-      <div class="about-hero-logo-cell filled"><img src="/logo-metatrader.png" alt="MetaTrader"></div>
-      <div class="about-hero-logo-cell empty"></div>
-      <div class="about-hero-logo-cell filled"><img src="/logo-alphavantage.png" alt="Alpha Vantage"></div>
+      <div class="about-hero-logo-cell"><img src="/logo-metatrader.png" alt="MetaTrader"></div>
+      <div class="about-hero-logo-cell blank"></div>
+      <div class="about-hero-logo-cell"><img src="/logo-alphavantage.png" alt="Alpha Vantage"></div>
 
       <div class="about-hero-logo-cell empty"></div>
-      <div class="about-hero-logo-cell empty"></div>
-      <div class="about-hero-logo-cell filled"><img src="/logo-yahoo.png" alt="Yahoo Finance"></div>
+      <div class="about-hero-logo-cell blank"></div>
+      <div class="about-hero-logo-cell"><img src="/logo-yahoo-white.png" alt="Yahoo Finance"></div>
       <div class="about-hero-logo-cell empty"></div>
     </div>
   </div>
