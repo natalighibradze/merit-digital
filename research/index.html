@@ -113,13 +113,26 @@
   .market-nav a:hover{border-color:var(--accent);color:var(--text);}
   .market-nav a.active{border-color:var(--accent);color:var(--text);background:rgba(124,124,255,.08);}
 
+  /* ===== SUB NAV (within a market) ===== */
+  .sub-nav{
+    display:none;
+    max-width:820px;margin:0 auto;padding:32px 24px 0;
+    gap:8px;flex-wrap:wrap;
+  }
+  .sub-nav.active{display:flex;}
+  .sub-nav a{
+    font-size:.76rem;padding:7px 14px;border:1px solid var(--line);border-radius:20px;
+    text-decoration:none;color:var(--text-dim);
+  }
+  .sub-nav a:hover{border-color:var(--accent);color:var(--text);}
+  .sub-nav a.active{border-color:var(--accent);color:var(--accent);background:rgba(124,124,255,.08);}
+
   /* ===== ARTICLE SECTIONS ===== */
   .research-article{
     max-width:820px;margin:0 auto;padding:80px 24px;
     display:none;
   }
   .research-article.active{display:block;}
-  .research-article.active + .research-article.active{border-top:1px solid var(--line);}
   .research-article .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
   .research-article h2{font-size:1.7rem;margin:0 0 10px;}
   .research-article .byline{font-size:.8rem;color:var(--text-dim);margin-bottom:32px;}
@@ -219,14 +232,13 @@
 
 <noscript><style>.research-article{display:block!important;}</style></noscript>
 <nav class="market-nav">
-  <a href="#crypto">Crypto</a>
-  <a href="#forex">Forex</a>
-  <a href="#commodities">Commodities</a>
-  <a href="#equities">Equities</a>
-  <a href="#stablecoin-regulation">EU Stablecoin Rules</a>
+  <a href="#crypto" data-tab="crypto">Crypto</a>
+  <a href="#dollar-strength" data-tab="forex">Forex</a>
+  <a href="#commodities" data-tab="commodities">Commodities</a>
+  <a href="#equities" data-tab="equities">Equities</a>
 </nav>
 
-<article class="research-article" id="crypto">
+<article class="research-article" id="crypto" data-tab="crypto" data-sub="Crypto Into 2027">
   <div class="tag">Crypto</div>
   <h2>What's Probable for Crypto Heading Into 2027</h2>
   <div class="byline">Merit Digital Advisory Research</div>
@@ -244,97 +256,7 @@
   <p>We see a probable scenario where crypto behaves less like a standalone asset class and more like a leveraged extension of broader risk sentiment by 2027, meaning macro liquidity conditions (rate policy, dollar strength) will likely explain more of the year's price action than crypto-specific catalysts. That's a shift from prior cycles, and one we think is underappreciated by narratives still anchored to halving mechanics alone.</p>
 </article>
 
-<article class="research-article" id="dollar-strength" data-tab="forex">
-  <div class="tag">Forex</div>
-  <h2>Why the Dollar Has Strengthened This Quarter, and What It Means for Companies Paying in USD</h2>
-  <div class="byline">Merit Digital Advisory Research</div>
-
-  <p>The dollar hasn't weakened this quarter, it's done the opposite. EUR/USD sits at 1.1420 as of today, down roughly 1.9% over the past month and about 2.25% since the start of the year. For any company holding euros but paying costs in dollars, that move has made every dollar more expensive to buy than it was a few months ago.</p>
-
-  <h3>What's Driving It</h3>
-  <ul>
-    <li><strong>The Fed just hiked, its first in three years.</strong> On September 16, the Federal Reserve raised its target rate 25 basis points to a range of 3.75%-4.00%, ending roughly nine months of holding steady, and signaled one more hike could come before year-end. Higher US rates make the dollar more attractive to hold, which is a big part of why it's strengthened.</li>
-    <li><strong>Oil is the reason the Fed moved at all.</strong> Renewed conflict in the Middle East has disrupted shipping through the Strait of Hormuz badly enough that the International Energy Agency called it the largest supply disruption in the history of the global oil market. Brent crude has climbed roughly 30% since midyear, briefly touching $109 a barrel in early September. That's pushed US inflation back up, with the consumer price index rising 3.4% year-over-year and monthly price growth quadrupling from the month before.</li>
-    <li><strong>The ECB moved too, just not as far.</strong> The ECB raised its deposit rate to 2.5% on September 10, also in response to energy-driven inflation. But the Fed's move kept the rate gap between the two banks wide, somewhere around 100 to 125 basis points, and that gap is what's kept the dollar supported against the euro rather than the two moves offsetting each other.</li>
-  </ul>
-
-  <h3>Our Current Read</h3>
-  <p>This is an inflation story wearing a currency story's clothes. The dollar isn't strengthening because the US economy is outperforming, it's strengthening because oil-driven inflation forced the Fed's hand after a long pause, and that rate move is what's pulling money into dollars. For a company that holds euro revenue but pays costs, debt, or suppliers in USD, that means real costs are creeping up simply from the exchange rate, even before anything else changes. The instinct is often to wait and see if it passes, but with the Fed flagging one more possible hike this year and the Middle East disruption still unresolved, we don't see a clear reason for that gap to close soon. Locking in a rate now through a forward contract, rather than converting at whatever the market offers month to month, is the kind of decision that's cheap to make early and expensive to put off.</p>
-</article>
-
-<article class="research-article" id="forex" data-tab="forex">
-  <div class="tag">Forex</div>
-  <h2>Forex Into 2027: Rate Differentials Aren't Enough</h2>
-  <div class="byline">Merit Digital Advisory Research</div>
-
-  <p>The textbook relationship between interest rate differentials and currency strength has weakened noticeably. Markets increasingly price in expected rate paths well before central banks act, which means currency moves are driven more by the surprise relative to expectations than the rate level itself.</p>
-
-  <h3>What We're Watching</h3>
-  <ul>
-    <li><strong>Divergence between the Fed, ECB, and BoE policy paths.</strong> The size and timing of that divergence, not the absolute level of any single central bank's rate, is what we expect to drive major pair volatility through 2027.</li>
-    <li><strong>Safe-haven demand independent of yield.</strong> The dollar and yen have both shown periods where their safe-haven status overrides their yield story entirely. We expect this decoupling to continue whenever geopolitical or growth risk spikes.</li>
-    <li><strong>Emerging market currency resilience.</strong> A number of EM central banks have built larger reserve buffers since 2022. That changes how EM currencies respond to Fed policy shifts compared to prior tightening cycles.</li>
-  </ul>
-
-  <h3>Our Current Read</h3>
-  <p>We think 2027 is more likely to be a year of range-bound majors punctuated by sharp, event-driven moves, rather than a sustained directional trend in any single pair. Positioning for volatility around specific catalysts (central bank meetings, election cycles) is likely to matter more than a single directional macro call.</p>
-</article>
-
-<article class="research-article" id="commodities" data-tab="commodities">
-  <div class="tag">Commodities</div>
-  <h2>The Oil Shock Nobody's Pricing Into Freight Costs</h2>
-  <div class="byline">Merit Digital Advisory Research</div>
-
-  <p>Brent crude is trading around $100&ndash;102 a barrel today, and while that number gets the headlines, it's not actually the most expensive part of this disruption anymore. The bigger story is what it now costs to move a barrel of oil at all.</p>
-
-  <h3>What's Driving It</h3>
-  <ul>
-    <li><strong>This is the largest oil supply disruption on record.</strong> Conflict in the Middle East has disrupted the Strait of Hormuz and Bab al-Mandab, and the shutdown of the East-West Crude Oil Pipeline on September 11 pushed the damage further, together cutting into an estimated 39% of global trade and 31% of global shipments. The International Energy Agency has called it the largest supply disruption in the history of the global oil market. Brent has climbed roughly 30% since midyear, briefly touching $109 in early September, though it's eased off that peak over the past few sessions as markets watched Saudi Arabia move to reopen its East-West pipeline as a Hormuz workaround, and as the US and Iran held what officials called a "very productive" round of talks.</li>
-    <li><strong>Shipping the oil now costs almost as much as the oil.</strong> Tanker owners willing to sail through Hormuz can now charge over $1 million a day to charter a vessel, a first. That alone adds roughly $26 to the cost of every barrel shipped, nearly a quarter of the oil's own price. War-risk insurance through the strait has climbed to 7.5&ndash;10% of a ship's hull value, about four times its five-year average.</li>
-    <li><strong>Rerouting is its own expense.</strong> Cargo avoiding the region entirely is piling into the Panama Canal instead, where auction slots have hit a record $5.3 million and wait times have stretched to 17 days. That's driving up costs even for shipments that never go near the Middle East, since rerouted vessels eat into capacity everywhere else in the network.</li>
-  </ul>
-
-  <h3>Our Current Read</h3>
-  <p>The price of oil itself is only part of what's hitting company costs right now. Shipping, insurance, and rerouting charges are compounding on top of it, and they move on a different, often slower timeline than the headline oil price, which means costs can keep climbing even in weeks where Brent looks like it's calming down. That matters for any company whose expenses touch freight, whether that's fuel directly or goods arriving by sea from Asia or the Gulf, even when their own cargo never sails near the conflict. The diplomatic signals this week, Saudi Arabia's pipeline workaround and the US-Iran talks, are the first real signs of de-escalation, but insurance and shipping markets tend to stay elevated well after a crisis peaks, since underwriters and shipowners don't unwind pricing as fast as they raise it. We'd treat this as a cost environment that outlasts the news cycle, not one that resets the moment a headline turns positive.</p>
-</article>
-
-<article class="research-article" id="commodities-2027" data-tab="commodities">
-  <div class="tag">Commodities</div>
-  <h2>Commodities Into 2027: Supply Discipline Meets Demand Uncertainty</h2>
-  <div class="byline">Merit Digital Advisory Research</div>
-
-  <p>Energy and metals markets are currently shaped by a tension between disciplined supply (producers reluctant to overinvest after the 2020&ndash;2022 volatility) and uncertain demand tied to the pace of the global energy transition and industrial activity in China.</p>
-
-  <h3>What We're Watching</h3>
-  <ul>
-    <li><strong>Gold's role as a reserve diversification asset.</strong> Central bank gold buying, particularly outside traditional Western reserve holders, has been a structural demand source that's independent of retail investor sentiment. We expect this to remain a floor under gold prices into 2027.</li>
-    <li><strong>Oil supply discipline versus demand growth.</strong> OPEC+ spare capacity decisions matter more than they have in years, given that shale producers have generally prioritized capital discipline over aggressive production growth.</li>
-    <li><strong>Industrial metals and the energy transition timeline.</strong> Copper and lithium demand assumptions tied to electrification continue to run ahead of near-term realized demand, creating a gap that could resolve in either direction.</li>
-  </ul>
-
-  <h3>Our Current Read</h3>
-  <p>We see gold's structural bid persisting into 2027 regardless of the rate cycle, while oil is more likely to stay range-bound unless a genuine supply shock forces OPEC+'s hand. Industrial metals carry the widest range of outcomes of any commodity we cover, since so much of the demand thesis depends on the actual pace, not the promised pace, of electrification.</p>
-</article>
-
-<article class="research-article" id="equities">
-  <div class="tag">Equities</div>
-  <h2>Equities Into 2027: Breadth Is the Question That Matters</h2>
-  <div class="byline">Merit Digital Advisory Research</div>
-
-  <p>Large-cap index performance has been concentrated in a small number of mega-cap names for several consecutive years. The question that matters most for 2027 isn't whether the index goes up, but whether that gain is broad-based or concentrated in the same handful of names.</p>
-
-  <h3>What We're Watching</h3>
-  <ul>
-    <li><strong>Small-cap rotation signals.</strong> Small-caps have historically outperformed in early-cycle recoveries and falling-rate environments. Whether that pattern plays out depends on whether rate cuts materialize as a genuine easing cycle or a one-off adjustment.</li>
-    <li><strong>Earnings growth outside mega-cap tech.</strong> If earnings growth broadens beyond the largest index constituents, we'd expect market breadth to improve meaningfully. If it doesn't, index-level gains will likely keep masking a much weaker picture underneath.</li>
-    <li><strong>Valuation dispersion.</strong> The gap between the most and least expensive segments of the market remains historically wide, which tends to create better relative-value opportunities for investors willing to look outside the largest names.</li>
-  </ul>
-
-  <h3>Our Current Read</h3>
-  <p>We think 2027 is a more plausible year for broadening market participation than the last several years have been, but we're treating this as a real possibility to monitor, not a base case to bet on outright. Breadth has been "about to improve" in market commentary for a while now without fully materializing, and we'd rather see it confirmed in the data than call it in advance.</p>
-</article>
-
-<article class="research-article" id="stablecoin-regulation">
+<article class="research-article" id="stablecoin-regulation" data-tab="crypto" data-sub="EU Stablecoin Rules">
   <div class="tag">Crypto &middot; Regulation</div>
   <h2>How EU Stablecoin Rules Are Reshaping Institutional Crypto Holdings</h2>
   <div class="byline">Merit Digital Advisory Research</div>
@@ -352,6 +274,96 @@
 
   <h3>Our Current Read</h3>
   <p>The current rules are already changing behavior on the ground: EU stablecoin holdings among investors have grown by roughly 40% since MiCA came into effect, and just over 30% of EU institutional investors say they've increased their digital asset exposure specifically because MiCA gave the space clearer footing. Even an imperfect framework seems to have been enough to draw more institutional money in. What matters next is that how reserves are actually held changes the risk picture, even when it isn't obvious on the surface: a stablecoin backed mostly by short-term liquid assets behaves differently under stress than one with a large share parked in bank deposits at a handful of institutions. We'd expect any treasury or fund using stablecoins operationally to start tracking which reserve model each token relies on, not just whether it carries a MiCA-compliant label, and we're watching whether the European Commission acts on the ECB's request as part of the broader review some are already calling MiCA 2.0.</p>
+</article>
+
+<article class="research-article" id="dollar-strength" data-tab="forex" data-sub="Dollar Strength">
+  <div class="tag">Forex</div>
+  <h2>Why the Dollar Has Strengthened This Quarter, and What It Means for Companies Paying in USD</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>The dollar hasn't weakened this quarter, it's done the opposite. EUR/USD sits at 1.1420 as of today, down roughly 1.9% over the past month and about 2.25% since the start of the year. For any company holding euros but paying costs in dollars, that move has made every dollar more expensive to buy than it was a few months ago.</p>
+
+  <h3>What's Driving It</h3>
+  <ul>
+    <li><strong>The Fed just hiked, its first in three years.</strong> On September 16, the Federal Reserve raised its target rate 25 basis points to a range of 3.75%-4.00%, ending roughly nine months of holding steady, and signaled one more hike could come before year-end. Higher US rates make the dollar more attractive to hold, which is a big part of why it's strengthened.</li>
+    <li><strong>Oil is the reason the Fed moved at all.</strong> Renewed conflict in the Middle East has disrupted shipping through the Strait of Hormuz badly enough that the International Energy Agency called it the largest supply disruption in the history of the global oil market. Brent crude has climbed roughly 30% since midyear, briefly touching $109 a barrel in early September. That's pushed US inflation back up, with the consumer price index rising 3.4% year-over-year and monthly price growth quadrupling from the month before.</li>
+    <li><strong>The ECB moved too, just not as far.</strong> The ECB raised its deposit rate to 2.5% on September 10, also in response to energy-driven inflation. But the Fed's move kept the rate gap between the two banks wide, somewhere around 100 to 125 basis points, and that gap is what's kept the dollar supported against the euro rather than the two moves offsetting each other.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>This is an inflation story wearing a currency story's clothes. The dollar isn't strengthening because the US economy is outperforming, it's strengthening because oil-driven inflation forced the Fed's hand after a long pause, and that rate move is what's pulling money into dollars. For a company that holds euro revenue but pays costs, debt, or suppliers in USD, that means real costs are creeping up simply from the exchange rate, even before anything else changes. The instinct is often to wait and see if it passes, but with the Fed flagging one more possible hike this year and the Middle East disruption still unresolved, we don't see a clear reason for that gap to close soon. Locking in a rate now through a forward contract, rather than converting at whatever the market offers month to month, is the kind of decision that's cheap to make early and expensive to put off.</p>
+</article>
+
+<article class="research-article" id="forex" data-tab="forex" data-sub="Forex Into 2027">
+  <div class="tag">Forex</div>
+  <h2>Forex Into 2027: Rate Differentials Aren't Enough</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>The textbook relationship between interest rate differentials and currency strength has weakened noticeably. Markets increasingly price in expected rate paths well before central banks act, which means currency moves are driven more by the surprise relative to expectations than the rate level itself.</p>
+
+  <h3>What We're Watching</h3>
+  <ul>
+    <li><strong>Divergence between the Fed, ECB, and BoE policy paths.</strong> The size and timing of that divergence, not the absolute level of any single central bank's rate, is what we expect to drive major pair volatility through 2027.</li>
+    <li><strong>Safe-haven demand independent of yield.</strong> The dollar and yen have both shown periods where their safe-haven status overrides their yield story entirely. We expect this decoupling to continue whenever geopolitical or growth risk spikes.</li>
+    <li><strong>Emerging market currency resilience.</strong> A number of EM central banks have built larger reserve buffers since 2022. That changes how EM currencies respond to Fed policy shifts compared to prior tightening cycles.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>We think 2027 is more likely to be a year of range-bound majors punctuated by sharp, event-driven moves, rather than a sustained directional trend in any single pair. Positioning for volatility around specific catalysts (central bank meetings, election cycles) is likely to matter more than a single directional macro call.</p>
+</article>
+
+<article class="research-article" id="commodities" data-tab="commodities" data-sub="Oil Shock &amp; Freight Costs">
+  <div class="tag">Commodities</div>
+  <h2>The Oil Shock Nobody's Pricing Into Freight Costs</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>Brent crude is trading around $100&ndash;102 a barrel today, and while that number gets the headlines, it's not actually the most expensive part of this disruption anymore. The bigger story is what it now costs to move a barrel of oil at all.</p>
+
+  <h3>What's Driving It</h3>
+  <ul>
+    <li><strong>This is the largest oil supply disruption on record.</strong> Conflict in the Middle East has disrupted the Strait of Hormuz and Bab al-Mandab, and the shutdown of the East-West Crude Oil Pipeline on September 11 pushed the damage further, together cutting into an estimated 39% of global trade and 31% of global shipments. The International Energy Agency has called it the largest supply disruption in the history of the global oil market. Brent has climbed roughly 30% since midyear, briefly touching $109 in early September, though it's eased off that peak over the past few sessions as markets watched Saudi Arabia move to reopen its East-West pipeline as a Hormuz workaround, and as the US and Iran held what officials called a "very productive" round of talks.</li>
+    <li><strong>Shipping the oil now costs almost as much as the oil.</strong> Tanker owners willing to sail through Hormuz can now charge over $1 million a day to charter a vessel, a first. That alone adds roughly $26 to the cost of every barrel shipped, nearly a quarter of the oil's own price. War-risk insurance through the strait has climbed to 7.5&ndash;10% of a ship's hull value, about four times its five-year average.</li>
+    <li><strong>Rerouting is its own expense.</strong> Cargo avoiding the region entirely is piling into the Panama Canal instead, where auction slots have hit a record $5.3 million and wait times have stretched to 17 days. That's driving up costs even for shipments that never go near the Middle East, since rerouted vessels eat into capacity everywhere else in the network.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>The price of oil itself is only part of what's hitting company costs right now. Shipping, insurance, and rerouting charges are compounding on top of it, and they move on a different, often slower timeline than the headline oil price, which means costs can keep climbing even in weeks where Brent looks like it's calming down. That matters for any company whose expenses touch freight, whether that's fuel directly or goods arriving by sea from Asia or the Gulf, even when their own cargo never sails near the conflict. The diplomatic signals this week, Saudi Arabia's pipeline workaround and the US-Iran talks, are the first real signs of de-escalation, but insurance and shipping markets tend to stay elevated well after a crisis peaks, since underwriters and shipowners don't unwind pricing as fast as they raise it. We'd treat this as a cost environment that outlasts the news cycle, not one that resets the moment a headline turns positive.</p>
+</article>
+
+<article class="research-article" id="commodities-2027" data-tab="commodities" data-sub="Commodities Into 2027">
+  <div class="tag">Commodities</div>
+  <h2>Commodities Into 2027: Supply Discipline Meets Demand Uncertainty</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>Energy and metals markets are currently shaped by a tension between disciplined supply (producers reluctant to overinvest after the 2020&ndash;2022 volatility) and uncertain demand tied to the pace of the global energy transition and industrial activity in China.</p>
+
+  <h3>What We're Watching</h3>
+  <ul>
+    <li><strong>Gold's role as a reserve diversification asset.</strong> Central bank gold buying, particularly outside traditional Western reserve holders, has been a structural demand source that's independent of retail investor sentiment. We expect this to remain a floor under gold prices into 2027.</li>
+    <li><strong>Oil supply discipline versus demand growth.</strong> OPEC+ spare capacity decisions matter more than they have in years, given that shale producers have generally prioritized capital discipline over aggressive production growth.</li>
+    <li><strong>Industrial metals and the energy transition timeline.</strong> Copper and lithium demand assumptions tied to electrification continue to run ahead of near-term realized demand, creating a gap that could resolve in either direction.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>We see gold's structural bid persisting into 2027 regardless of the rate cycle, while oil is more likely to stay range-bound unless a genuine supply shock forces OPEC+'s hand. Industrial metals carry the widest range of outcomes of any commodity we cover, since so much of the demand thesis depends on the actual pace, not the promised pace, of electrification.</p>
+</article>
+
+<article class="research-article" id="equities" data-tab="equities">
+  <div class="tag">Equities</div>
+  <h2>Equities Into 2027: Breadth Is the Question That Matters</h2>
+  <div class="byline">Merit Digital Advisory Research</div>
+
+  <p>Large-cap index performance has been concentrated in a small number of mega-cap names for several consecutive years. The question that matters most for 2027 isn't whether the index goes up, but whether that gain is broad-based or concentrated in the same handful of names.</p>
+
+  <h3>What We're Watching</h3>
+  <ul>
+    <li><strong>Small-cap rotation signals.</strong> Small-caps have historically outperformed in early-cycle recoveries and falling-rate environments. Whether that pattern plays out depends on whether rate cuts materialize as a genuine easing cycle or a one-off adjustment.</li>
+    <li><strong>Earnings growth outside mega-cap tech.</strong> If earnings growth broadens beyond the largest index constituents, we'd expect market breadth to improve meaningfully. If it doesn't, index-level gains will likely keep masking a much weaker picture underneath.</li>
+    <li><strong>Valuation dispersion.</strong> The gap between the most and least expensive segments of the market remains historically wide, which tends to create better relative-value opportunities for investors willing to look outside the largest names.</li>
+  </ul>
+
+  <h3>Our Current Read</h3>
+  <p>We think 2027 is a more plausible year for broadening market participation than the last several years have been, but we're treating this as a real possibility to monitor, not a base case to bet on outright. Breadth has been "about to improve" in market commentary for a while now without fully materializing, and we'd rather see it confirmed in the data than call it in advance.</p>
 </article>
 
 <div class="disclaimer">
@@ -372,28 +384,68 @@
 <script>
 (function(){
   var nav = document.querySelectorAll('.market-nav a');
-  var articles = document.querySelectorAll('.research-article');
-  function show(id){
-    var found = false;
-    articles.forEach(function(a){
-      var on = (a.getAttribute('data-tab') || a.id) === id;
-      a.classList.toggle('active', on);
-      if(on) found = true;
+  var articles = Array.prototype.slice.call(document.querySelectorAll('.research-article'));
+
+  // Group articles by market (data-tab), and build a sub-nav of buttons
+  // for any market that has more than one article, inserted right above
+  // the first article in that group.
+  var groups = {};
+  articles.forEach(function(a){
+    var tab = a.getAttribute('data-tab') || a.id;
+    (groups[tab] = groups[tab] || []).push(a);
+  });
+  var subNavs = {};
+  Object.keys(groups).forEach(function(tab){
+    var members = groups[tab];
+    if(members.length < 2) return;
+    var el = document.createElement('div');
+    el.className = 'sub-nav';
+    members.forEach(function(a){
+      var btn = document.createElement('a');
+      btn.href = '#' + a.id;
+      btn.textContent = a.getAttribute('data-sub') || (a.querySelector('h2') && a.querySelector('h2').textContent) || a.id;
+      el.appendChild(btn);
     });
-    if(!found && articles.length){ articles[0].classList.add('active'); id = articles[0].id; }
+    members[0].parentNode.insertBefore(el, members[0]);
+    subNavs[tab] = el;
+  });
+
+  function show(id){
+    var target = document.getElementById(id);
+    if(!target || !target.classList.contains('research-article')){
+      target = articles[0];
+      id = target.id;
+    }
+    var tab = target.getAttribute('data-tab') || target.id;
+    articles.forEach(function(a){ a.classList.toggle('active', a === target); });
+    Object.keys(subNavs).forEach(function(t){
+      var el = subNavs[t];
+      var on = t === tab;
+      el.classList.toggle('active', on);
+      if(on){
+        Array.prototype.forEach.call(el.querySelectorAll('a'), function(btn){
+          btn.classList.toggle('active', btn.getAttribute('href') === '#' + id);
+        });
+      }
+    });
     nav.forEach(function(link){
-      link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      link.classList.toggle('active', link.getAttribute('data-tab') === tab);
     });
   }
-  nav.forEach(function(link){
-    link.addEventListener('click', function(e){
-      e.preventDefault();
-      var id = link.getAttribute('href').slice(1);
-      show(id);
-      history.replaceState(null, '', '#' + id);
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    });
+
+  function onClick(e){
+    e.preventDefault();
+    var id = this.getAttribute('href').slice(1);
+    show(id);
+    history.replaceState(null, '', '#' + id);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+  nav.forEach(function(link){ link.addEventListener('click', onClick); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('.sub-nav a');
+    if(a){ onClick.call(a, e); }
   });
+
   show((location.hash || '').slice(1) || (articles[0] && articles[0].id));
 })();
 </script>
